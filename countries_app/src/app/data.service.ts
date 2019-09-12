@@ -37,15 +37,6 @@ export class DataService {
       })
     };
 
-    let this2 = this;
-    var data2 = this.http.get(this.postsURL, httpOptions).subscribe(data =>
-       //console.log(data)
-        data.forEach(function(e) {
-          e.distance = this2.getDistanceFromLatLonInKm(e.latitude,e.longitude,45.5546677,12.303427);
-        })
-      ); 
-
-
     var data = this.http.get(this.postsURL, httpOptions); 
     return data;
   }

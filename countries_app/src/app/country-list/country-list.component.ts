@@ -1,7 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { DataService } from '../data.service';
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
-import { type } from 'os';
+import * as jQuery from 'jquery';
+
 
 @Component({
   selector: 'app-country-list',
@@ -15,6 +16,19 @@ export class CountryListComponent implements OnInit {
   country$: Object;
 
   constructor(private data: DataService, private fb: FormBuilder) {
+    jQuery(document).ready(function(){
+      var cookies = document.cookie.split(' ');
+      cookies.forEach(function(i){
+        var element = i.split("=");
+        var inputToWrite = document.getElementById(element[0]);
+        if(inputToWrite != null) {
+          //inputToWrite.setAttribute("ng-value",element[1])
+          console.log("set");
+          jQuery("#"+element[0]).val(element[1]); //questa riga di codice viene messa perchè la precedente creava dei problemi sulla visualizzazione a frontend del contenuto
+        }
+      })
+    })
+
   }
 
   onSubmit(id) { 
@@ -39,6 +53,7 @@ export class CountryListComponent implements OnInit {
   }
 
   ngOnInit() {
+
     let this2 = this;
     //this.createForm();
 
@@ -52,22 +67,13 @@ export class CountryListComponent implements OnInit {
       
       data => this.country$ = data
 
-
     );
     this.notesForm =  new FormGroup({
       note: new FormControl('')
     })
   }
 
-  ngAfterViewChecked(){
-    var cookies = document.cookie.split(' ');
-    cookies.forEach(function(i){
-      var element = i.split("=");
-      var inputToWrite = document.getElementById(element[0]);
-      if(inputToWrite != null) {
-        inputToWrite.setAttribute("ng-value",element[1])
-      }
-    })
+  ngAfterViewChecked(){ 
    }
 
   /*
