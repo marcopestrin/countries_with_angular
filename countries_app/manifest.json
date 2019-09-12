@@ -1,0 +1,6 @@
+{
+  "name": "metide",
+  "short_name": "metide",
+  "start_url": "/",
+  "display": "standalone"
+}

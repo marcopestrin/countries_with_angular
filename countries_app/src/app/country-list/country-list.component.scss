@@ -1,0 +1,17 @@
+.list-countries {
+    background-color:#3D393B;
+    padding:30px;
+    hr {
+        background:#ddd;
+    }
+    h1,a,strong {
+        color:#ddd;
+    }
+    a {
+        text-transform: uppercase;
+    }
+    .panel-body {
+        margin:2px 0px 20px 50px;
+        color:#ddd;
+    }
+}

@@ -1,0 +1,32 @@
+<div class="list-countries">
+    <h1>List of all countries</h1>
+    <div class="bs-example">
+            <div class="panel-group" [attr.id]="'accordion_' + c.id" *ngFor="let c of country$">
+                <div class="panel panel-default" >
+                    <div class="panel-heading">
+                        <span class="panel-title">
+                            <a data-toggle="collapse" [attr.data-parent]="'#accordion_' + c.id" [attr.href]="'#collapseOne_' + c.id">
+                                <img src="{{ c.flag }}" /> {{ c.name }} 
+                            </a>
+                        </span>
+                    </div>
+                    <div [attr.id]="'collapseOne_' + c.id" class="panel-collapse collapse in">
+                        <div class="panel-body">
+                            <strong>Name Official</strong>: {{c.name_official}}<br />
+                            <strong>Latitude</strong>: {{c.latitude}}<br />
+                            <strong>Longitude</strong>: {{c.longitude}}<br />
+                            <strong>Zoom</strong>: {{c.zoom}}<br />
+                            <strong>Code 2L</strong>: {{c.code2l}}<br />
+                            <strong>Code 3L</strong>: {{c.code3l}}<br />
+                            <strong>Distance</strong>: {{c.distance}} Km<br /><br />
+                            <form (submit)="onSubmit(c.id)" [formGroup]="notesForm">
+                                <input placeholder="notes" class="form-control" id="{{c.id}}" formControlName="note" /><br />
+                                <button type="submit" class="btn btn-primary" name="save">Save</button>
+                            </form>
+                            <hr />
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>
